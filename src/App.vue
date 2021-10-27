@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <event-calendar :events="events" style="height: 80vh" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EventCalendar from "@/components/EventCalendar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    EventCalendar,
+  },
+  data: () => ({
+    events: [],
+  }),
+  mounted() {
+    this.events = [
+      {
+        id: 1,
+        name: "gfhgf jhgfjgfdv iuyt g ukghft oioi",
+        date: "2021-10-27 12:00:00",
+        type: "green",
+      },
+      {
+        id: 2,
+        name: "gfhgf jhgfjgfdv iuyt g ukghft oioi",
+        date: "2021-10-27 10:00:00",
+        type: "orange",
+      },
+      {
+        id: 3,
+        name: "gfhgf jhgfjgfdv iuyt g ukghft oioi",
+        date: "2021-10-28 16:40:00",
+        type: "red",
+      },
+      {
+        id: 4,
+        name: "gfhgf jhgfjgfdv iuyt g ukghft oioi",
+        date: "2021-10-27 21:00:00",
+        type: "red",
+      },
+      {
+        id: 5,
+        name: "gfhgf jhgfjgfdv iuyt g ukghft oioi",
+        date: "2021-10-27 07:90:00",
+        type: "red",
+      },
+    ];
+  },
+};
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
