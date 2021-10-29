@@ -8,7 +8,10 @@ export default {
     EventCalendarBodyItem,
   },
   props: {
-    date: {
+    dateFrom: {
+      type: Object,
+    },
+    dateTo: {
       type: Object,
     },
     events: {
@@ -18,35 +21,23 @@ export default {
   render: function (createElement) {
     const items = [];
 
-    for (let mom of this.dates) {
-      const events = this.dayEvents(mom);
+    let currentDate = this.dateFrom;
+
+    while (currentDate <= this.dateTo) {
+      const events = this.dayEvents(currentDate);
       items.push(
         createElement(EventCalendarBodyItem, {
           props: {
-            date: mom,
+            date: currentDate,
             events,
           },
         })
       );
+
+      currentDate = moment(currentDate).add(1, "days");
     }
+
     return createElement("div", {}, items);
-  },
-  computed: {
-    dates() {
-      let dates = [];
-
-      const dateFrom = moment(this.$props.date).startOf("week");
-      const dateTo = moment(this.$props.date).endOf("month").endOf("week");
-
-      let currentDate = dateFrom;
-
-      while (currentDate <= dateTo) {
-        dates.push(currentDate);
-        currentDate = moment(currentDate).add(1, "days");
-      }
-
-      return dates;
-    },
   },
   methods: {
     dayEvents(mom) {

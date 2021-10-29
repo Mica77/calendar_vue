@@ -32,7 +32,8 @@
       :style="{
         gridTemplateRows: `repeat(${calendarRowsCount}, minmax(0, 1fr))`,
       }"
-      :date="date"
+      :dateFrom="currentDateFrom"
+      :dateTo="currentDateTo"
       :events="currentEvents"
     />
   </div>
@@ -64,7 +65,7 @@ export default {
       }));
 
       if (moment().startOf("week").day() == 1) {
-        //if weekdays begin with Sunday
+        //if week must begins with Moday
         const sunday = weekdays[0];
         weekdays = weekdays.slice(1);
         weekdays.push(sunday);
